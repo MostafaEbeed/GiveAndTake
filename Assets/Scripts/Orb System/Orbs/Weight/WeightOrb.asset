@@ -14,11 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   orbName: Weight
   visualPrefab: {fileID: 6075522847896849564, guid: 395a5d40525543747b60b66fe46c8651, type: 3}
-  equipSound: {fileID: 0}
+  equipSound: {fileID: 8300000, guid: b42528a417f0d864ba39c1234be32aa9, type: 3}
   uiPopupMessage: 
   moveSpeedMultiplier: 1
   jumpHeightMultiplier: 1
   extraGravityMultiplier: 1
   disableMovement: 1
   disableJump: 1
-  slamGravityMultiplier: 10
+  disableLook: 1
+  slamGravityMultiplier: 5

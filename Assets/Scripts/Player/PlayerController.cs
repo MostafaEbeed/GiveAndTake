@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
 
     public bool IsMovementLocked { get; set; } = false;
     public bool IsJumpLocked { get; set; } = false;
+    public bool IsLookLocked { get; set; } = false;
 
     public float ExtraGravityMultiplier { get; set; } = 1f;
 
@@ -161,14 +162,20 @@ public class PlayerController : MonoBehaviour
 
     private void Turn()
     {
+        if (IsLookLocked)
+            return;
+
         mouseX *= mouseSensitivity * Time.deltaTime;
         mouseY *= mouseSensitivity * Time.deltaTime;
 
         xRotation -= mouseY;
-
         xRotation = Mathf.Clamp(xRotation, -90, 90);
 
-        virtualCamera.transform.localRotation = Quaternion.Slerp(virtualCamera.transform.localRotation, Quaternion.Euler(xRotation + a_currentRecoil.y, a_currentRecoil.x, 0), rotSpeed * Time.deltaTime);
+        virtualCamera.transform.localRotation = Quaternion.Slerp(
+            virtualCamera.transform.localRotation,
+            Quaternion.Euler(xRotation + a_currentRecoil.y, a_currentRecoil.x, 0),
+            rotSpeed * Time.deltaTime
+        );
 
         transform.Rotate(Vector3.up * mouseX);
     }

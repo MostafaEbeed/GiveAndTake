@@ -13,4 +13,5 @@ public class OrbData : ScriptableObject
 
     public bool disableMovement = false;
     public bool disableJump = false;
+    public bool disableLook = false;
 }

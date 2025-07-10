@@ -34,7 +34,7 @@ public class OrbManager : MonoBehaviour
             m_currentBehavior.OnUnequip();
 
         if (m_currentVisual)
-            Destroy(m_currentVisual);
+            m_currentVisual.GetComponent<OrbPopUp>()?.DestroyWithShrink();
 
         m_currentIndex = index;
         OrbData data = m_orbDatas[m_currentIndex];

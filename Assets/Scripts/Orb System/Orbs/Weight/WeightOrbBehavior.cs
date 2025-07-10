@@ -8,12 +8,11 @@ public class WeightOrbBehavior : OrbBehavior
     {
         m_player.IsMovementLocked = Data.disableMovement;
         m_player.IsJumpLocked = Data.disableJump;
+        m_player.IsLookLocked = Data.disableLook;
 
         m_player.currentSpeedMultiplier = Data.moveSpeedMultiplier;
         m_player.JumpHeight = m_player.IsJumpLocked ? 0f : m_player.JumpHeight * Data.jumpHeightMultiplier;
         m_player.ExtraGravityMultiplier = Data.extraGravityMultiplier;
-
-        m_wasGrounded = m_player.controller.isGrounded;
 
         if (Data.equipSound)
             AudioSource.PlayClipAtPoint(Data.equipSound, m_player.transform.position);
@@ -21,7 +20,7 @@ public class WeightOrbBehavior : OrbBehavior
 
     public override void OnUpdate()
     {
-        if (!m_player.controller.isGrounded && m_wasGrounded)
+        if (!m_player.controller.isGrounded)
         {
             m_player.ExtraGravityMultiplier = ((WeightOrbData)Data).slamGravityMultiplier;
         }
@@ -33,6 +32,7 @@ public class WeightOrbBehavior : OrbBehavior
     {
         m_player.IsMovementLocked = false;
         m_player.IsJumpLocked = false;
+        m_player.IsLookLocked = false;
 
         m_player.currentSpeedMultiplier = 1f;
         m_player.JumpHeight = 2f;
