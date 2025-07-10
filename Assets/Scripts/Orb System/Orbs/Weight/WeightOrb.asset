@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc40de8f1dc2813449c99d7636f0fdd5, type: 3}
+  m_Name: WeightOrb
+  m_EditorClassIdentifier: 
+  orbName: Weight
+  visualPrefab: {fileID: 6075522847896849564, guid: 395a5d40525543747b60b66fe46c8651, type: 3}
+  equipSound: {fileID: 0}
+  uiPopupMessage: 
+  moveSpeedMultiplier: 1
+  jumpHeightMultiplier: 1
+  extraGravityMultiplier: 1
+  disableMovement: 1
+  disableJump: 1
+  slamGravityMultiplier: 10

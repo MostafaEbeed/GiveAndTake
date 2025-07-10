@@ -16,7 +16,48 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float sprintTransitSpeed = 5f;
     [SerializeField] private float gravity = 0;
     [SerializeField] private float jumpHeight = 2f;
-    [SerializeField] private float rotSpeed = 0;    
+    [SerializeField] private float rotSpeed = 0;
+
+    public bool IsMovementLocked { get; set; } = false;
+    public bool IsJumpLocked { get; set; } = false;
+
+    public float ExtraGravityMultiplier { get; set; } = 1f;
+
+    public float MoveSpeed
+    {
+        get => moveSpeed;
+        set => moveSpeed = value;
+    }
+
+    public float SprintSpeedMultiplier
+    {
+        get => sprintSpeedMultiplier;
+        set => sprintSpeedMultiplier = value;
+    }
+
+    public float SprintTransitSpeed
+    {
+        get => sprintTransitSpeed;
+        set => sprintTransitSpeed = value;
+    }
+
+    public float Gravity
+    {
+        get => gravity;
+        set => gravity = value;
+    }
+
+    public float JumpHeight
+    {
+        get => jumpHeight;
+        set => jumpHeight = value;
+    }
+
+    public float RotSpeed
+    {
+        get => rotSpeed;
+        set => rotSpeed = value;
+    }
 
     private float verticalVelocity;
     private float currentSpeed;
@@ -54,7 +95,7 @@ public class PlayerController : MonoBehaviour
     private float mouseX;
     private float mouseY;
 
-    private void Start()
+    private void Awake()
     {
         controller = GetComponent<CharacterController>();
 
@@ -90,19 +131,22 @@ public class PlayerController : MonoBehaviour
 
     private void GroundMovement()
     {
-        Vector3 move = new Vector3(turnInput, 0, moveInput);
+
+        Vector3 move = IsMovementLocked ? Vector3.zero : new Vector3(turnInput, 0, moveInput);
         move = virtualCamera.transform.TransformDirection(move);
 
-        if (Input.GetKey(KeyCode.LeftShift))
+
+        if (!IsMovementLocked && Input.GetKey(KeyCode.LeftShift))
         {
             currentSpeedMultiplier = sprintSpeedMultiplier * playerStates.Speed;
             targetFOV = sprintFOV;
         }
         else
         {
-            currentSpeedMultiplier = 1f * playerStates.Speed;
+            currentSpeedMultiplier = IsMovementLocked ? 0f : 1f * playerStates.Speed;
             targetFOV = normalFOV;
         }
+
 
         currentSpeed = Mathf.Lerp(currentSpeed, moveSpeed * currentSpeedMultiplier, sprintTransitSpeed * Time.deltaTime);
 
@@ -192,14 +236,15 @@ public class PlayerController : MonoBehaviour
         {
             verticalVelocity = -1;
 
-            if (Input.GetButtonDown("Jump"))
+            if (!IsJumpLocked && Input.GetButtonDown("Jump"))
             {
                 verticalVelocity = Mathf.Sqrt(jumpHeight * gravity * 2);
             }
+
         }
         else
         {
-            verticalVelocity -= gravity * Time.deltaTime;
+            verticalVelocity -= gravity * ExtraGravityMultiplier * Time.deltaTime;
         }
         return verticalVelocity;
     }
