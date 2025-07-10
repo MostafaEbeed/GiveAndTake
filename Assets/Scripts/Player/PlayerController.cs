@@ -18,6 +18,16 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float jumpHeight = 2f;
     [SerializeField] private float rotSpeed = 0;
 
+    [Header("Advanced Jump Settings")]
+    [SerializeField] private float coyoteTime = 0.2f;
+    [SerializeField] private float jumpBufferTime = 0.2f;
+
+    private float coyoteTimer;
+    private float jumpBufferTimer;
+
+    private bool isJumping = false;
+
+
     public bool IsMovementLocked { get; set; } = false;
     public bool IsJumpLocked { get; set; } = false;
     public bool IsLookLocked { get; set; } = false;
@@ -107,6 +117,16 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         InputManagement();
+
+        if (Input.GetButtonDown("Jump"))
+        {
+            jumpBufferTimer = jumpBufferTime;
+        }
+        else
+        {
+            jumpBufferTimer -= Time.deltaTime;
+        }
+
         Movement();
 
         PlayFootstepSound();
@@ -241,20 +261,37 @@ public class PlayerController : MonoBehaviour
     {
         if (controller.isGrounded)
         {
-            verticalVelocity = -1;
+            coyoteTimer = coyoteTime;
+            isJumping = false;
 
-            if (!IsJumpLocked && Input.GetButtonDown("Jump"))
+            if (!IsJumpLocked && jumpBufferTimer > 0f)
             {
                 verticalVelocity = Mathf.Sqrt(jumpHeight * gravity * 2);
+                jumpBufferTimer = 0f;
+                isJumping = true;
             }
-
+            else
+            {
+                verticalVelocity = -1f;
+            }
         }
         else
         {
+            coyoteTimer -= Time.deltaTime;
+
+            if (!IsJumpLocked && jumpBufferTimer > 0f && coyoteTimer > 0f && !isJumping)
+            {
+                verticalVelocity = Mathf.Sqrt(jumpHeight * gravity * 2);
+                jumpBufferTimer = 0f;
+                isJumping = true;
+            }
+
             verticalVelocity -= gravity * ExtraGravityMultiplier * Time.deltaTime;
         }
+
         return verticalVelocity;
     }
+
 
     private void InputManagement()
     {
