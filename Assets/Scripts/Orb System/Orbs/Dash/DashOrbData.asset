@@ -15,7 +15,8 @@ MonoBehaviour:
   orbName: DashOrb
   visualPrefab: {fileID: 6075522847896849564, guid: a3514ca62666a3f40b4254bb65afade8, type: 3}
   equipSound: {fileID: 0}
-  uiPopupMessage: 
+  uiTakeMessage: "Speed surges through you \u2014 forward is the only way!"
+  uiGiveMessage: "You lose control \u2014 no turning back now."
   moveSpeedMultiplier: 10
   jumpHeightMultiplier: 2
   extraGravityMultiplier: 2

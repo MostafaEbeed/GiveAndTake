@@ -5,7 +5,9 @@ public class OrbData : ScriptableObject
     public string orbName;
     public GameObject visualPrefab;
     public AudioClip equipSound;
-    public string uiPopupMessage;
+
+    public string uiTakeMessage;
+    public string uiGiveMessage;
 
     public float moveSpeedMultiplier = 1f;
     public float jumpHeightMultiplier = 1f;

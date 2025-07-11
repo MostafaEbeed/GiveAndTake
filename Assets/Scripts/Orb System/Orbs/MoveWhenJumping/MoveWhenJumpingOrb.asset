@@ -15,7 +15,8 @@ MonoBehaviour:
   orbName: MoveWhenJumping
   visualPrefab: {fileID: 6075522847896849564, guid: 3603774a1b07d8848a053612a280004d, type: 3}
   equipSound: {fileID: 8300000, guid: b42528a417f0d864ba39c1234be32aa9, type: 3}
-  uiPopupMessage: 
+  uiTakeMessage: "You feel light \u2014 spring-loaded and ready to soar!"
+  uiGiveMessage: "Your feet can\u2019t stay still\u2026 stability lost!"
   moveSpeedMultiplier: 10
   jumpHeightMultiplier: 2
   extraGravityMultiplier: 2

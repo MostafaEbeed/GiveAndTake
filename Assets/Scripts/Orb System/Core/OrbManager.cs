@@ -12,6 +12,9 @@ public class OrbManager : MonoBehaviour
     private int m_currentIndex = -1;
     private PlayerController m_player;
 
+    [SerializeField] private OrbUIPopUp orbUIPopup;
+    [SerializeField] private AudioSource m_equipOrbSFXSource;
+
     private void Start()
     {
         m_player = GetComponent<PlayerController>();
@@ -98,6 +101,15 @@ public class OrbManager : MonoBehaviour
 
             m_currentBehavior.Initialize(m_player, data);
             m_currentBehavior.OnEquip();
+
+            if(data != m_defaultOrbBehavior)
+            {
+                if (orbUIPopup != null)
+                {
+                    orbUIPopup.Show(data.uiGiveMessage, data.uiTakeMessage);
+                    m_equipOrbSFXSource.Play();
+                }
+            }
         }
         else
         {
