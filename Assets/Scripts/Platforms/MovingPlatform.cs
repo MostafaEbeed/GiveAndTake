@@ -19,6 +19,9 @@ public abstract class MovingPlatform : MonoBehaviour
     protected bool isMoving = false;
     protected bool isAtTarget = false;
     
+    [Header("Debug")]
+    public bool showGizmos = true;
+    
     // Track players on this platform
     private System.Collections.Generic.HashSet<PlatformPlayerController> playersOnPlatform = 
         new System.Collections.Generic.HashSet<PlatformPlayerController>();
@@ -110,6 +113,26 @@ public abstract class MovingPlatform : MonoBehaviour
             return (destination - transform.position).normalized * moveSpeed;
         }
         return Vector3.zero;
+    }
+    
+    protected virtual void OnDrawGizmos()
+    {
+        if (!showGizmos) return;
+        
+        Vector3 start = Application.isPlaying ? startPosition : transform.position;
+        
+        // Draw current position
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireCube(start, GetComponent<Collider>().bounds.size);
+        
+        // Draw target position
+        Gizmos.color = Color.red;
+        Vector3 target = start + GetMoveDirection() * moveDistance;
+        Gizmos.DrawWireCube(target, GetComponent<Collider>().bounds.size);
+        
+        // Draw path
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawLine(start, target);
     }
     
     public abstract Vector3 GetMoveDirection();

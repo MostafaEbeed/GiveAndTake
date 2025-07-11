@@ -324,6 +324,8 @@ GameObject:
   - component: {fileID: 6356139808857276780}
   - component: {fileID: 6746608268529232252}
   - component: {fileID: 3407129393036957797}
+  - component: {fileID: 5465670565888225184}
+  - component: {fileID: 4731528945361479751}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -557,8 +559,49 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9b026e9b4d7fb2459df55c9d5005e2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_orbDatas: []
+  m_orbDatas:
+  - {fileID: 11400000, guid: 32433ebb8b5c66c489f5e4bc83f1acd5, type: 2}
+  - {fileID: 11400000, guid: d1d8ab2c57aa97145a3eccf42404c57c, type: 2}
+  - {fileID: 11400000, guid: 5c95deb9e84fee54eaa4294e565b5c44, type: 2}
+  - {fileID: 11400000, guid: 921476306c57b304b80a7254eaa46391, type: 2}
   m_orbSlot: {fileID: 136751373923765038}
+--- !u!114 &5465670565888225184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8946431897841542357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1733f5db1614432ea7f43b4d4fb24cdf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  groundCheckDistance: 1.1
+  platformLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  platformStickDistance: 0.5
+  showDebugInfo: 1
+--- !u!114 &4731528945361479751
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8946431897841542357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5e2e5b7c1c13d149abcccdf91c2f1ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  groundDistance: 1.1
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 128
+  metalGroundMask:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!1001 &644673112834969000
 PrefabInstance:
   m_ObjectHideFlags: 0
