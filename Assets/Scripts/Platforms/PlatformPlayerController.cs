@@ -155,7 +155,8 @@ public class PlatformPlayerController : MonoBehaviour
             Gizmos.DrawRay(transform.position, platformVelocity);
         }
     }
-    
+
+#if UNITY_EDITOR
     void OnGUI()
     {
         if (showDebugInfo)
@@ -167,4 +168,5 @@ public class PlatformPlayerController : MonoBehaviour
             }
         }
     }
+#endif
 }
