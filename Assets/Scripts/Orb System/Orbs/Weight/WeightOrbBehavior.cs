@@ -2,9 +2,13 @@ using UnityEngine;
 
 public class WeightOrbBehavior : OrbBehavior
 {
+    GroundCheck playerGroundCheck;
+    
     public override void OnEquip()
     {
         base.OnEquip();
+        
+        playerGroundCheck = m_player.GetComponent<GroundCheck>();
         
         m_player.IsMovementLocked = Data.disableMovement;
         m_player.IsJumpLocked = Data.disableJump;
@@ -31,6 +35,11 @@ public class WeightOrbBehavior : OrbBehavior
         InputManagement();
         
         m_player.InputManagement(moveInput, turnInput);
+
+        if (playerGroundCheck.IsGlassGrounded())
+        {
+            playerGroundCheck.TryDestroyCurrentFloor();
+        }
     }
 
     public override void OnUnequip()

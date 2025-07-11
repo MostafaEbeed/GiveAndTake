@@ -732,6 +732,9 @@ MonoBehaviour:
   metalGroundMask:
     serializedVersion: 2
     m_Bits: 512
+  glassGroundMask:
+    serializedVersion: 2
+    m_Bits: 2048
 --- !u!114 &1515214128155625876
 MonoBehaviour:
   m_ObjectHideFlags: 0
