@@ -1,6 +1,6 @@
 public class MoveWhenJumpingOrbBehavior : OrbBehavior
 {
-    private bool bouncedThisFrame = false;
+    private bool hasLeftGroundSinceLastBounce = true;
 
     private float m_localMoveInput;
     private float m_localTurnInput;
@@ -12,24 +12,35 @@ public class MoveWhenJumpingOrbBehavior : OrbBehavior
         m_localMoveInput = moveInput;
         m_localTurnInput = turnInput;
 
-        if (m_player.controller.isGrounded && !bouncedThisFrame)
+        bool isGrounded = m_player.controller.isGrounded;
+
+        if (isGrounded && hasLeftGroundSinceLastBounce)
         {
             m_player.ForceBounce(Data.jumpHeightMultiplier);
-            bouncedThisFrame = true;
+            hasLeftGroundSinceLastBounce = false;
         }
 
-        if (!m_player.controller.isGrounded)
+        if (!isGrounded)
         {
-            bouncedThisFrame = false;
+            hasLeftGroundSinceLastBounce = true;
         }
 
         m_player.InputManagement(m_localMoveInput, m_localTurnInput);
-
     }
 
     public override void OnEquip()
     {
         base.OnEquip();
+
+        if (m_player.controller.isGrounded)
+        {
+            m_player.ForceBounce(Data.jumpHeightMultiplier);
+            hasLeftGroundSinceLastBounce = false;
+        }
+        else
+        {
+            hasLeftGroundSinceLastBounce = true;
+        }
     }
 
     public override void OnUnequip()

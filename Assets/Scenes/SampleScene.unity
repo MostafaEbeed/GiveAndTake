@@ -236,13 +236,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1740158979101637603, guid: ea7e6d3df03b3924f8f100d9712bdc32, type: 3}
+      propertyPath: Lens.FieldOfView
+      value: 60
+      objectReference: {fileID: 0}
     - target: {fileID: 3407129393036957797, guid: ea7e6d3df03b3924f8f100d9712bdc32, type: 3}
       propertyPath: m_defaultOrbBehavior
       value: 
       objectReference: {fileID: 11400000, guid: 32433ebb8b5c66c489f5e4bc83f1acd5, type: 2}
     - target: {fileID: 3407129393036957797, guid: ea7e6d3df03b3924f8f100d9712bdc32, type: 3}
       propertyPath: m_orbDatas.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3407129393036957797, guid: ea7e6d3df03b3924f8f100d9712bdc32, type: 3}
       propertyPath: 'm_orbDatas.Array.data[0]'
@@ -259,7 +263,7 @@ PrefabInstance:
     - target: {fileID: 3407129393036957797, guid: ea7e6d3df03b3924f8f100d9712bdc32, type: 3}
       propertyPath: 'm_orbDatas.Array.data[3]'
       value: 
-      objectReference: {fileID: 11400000, guid: 921476306c57b304b80a7254eaa46391, type: 2}
+      objectReference: {fileID: 11400000, guid: 61302f992dfecf34ea3bc0dc3a8de504, type: 2}
     - target: {fileID: 7281278486317995901, guid: ea7e6d3df03b3924f8f100d9712bdc32, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

@@ -1061,9 +1061,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: daab0000
+      m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 80d1faff8a8bfbff64b1fbff3e4bffffe8e2ffff02cd020014cd02002ecd0200b0cd0200
+      m_ExpandedIDs: 80d1faff8a8bfbff64b1fbff3e4bffff4ee2ffffe8e2ffff02cd020014cd02002ecd0200b0cd0200
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1160,8 +1160,7 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SkipHidden: 0
     m_SearchArea: 1
-    m_Folders:
-    - Assets/Scripts/Orb System/Orbs/MoveWhenJumping
+    m_Folders: []
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -1179,7 +1178,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: b0230000
     m_LastClickedID: 9136
-    m_ExpandedIDs: ffffffff000000007eb4000080b4000082b4000084b4000086b400008ab400008cb400008eb4000092b4000094b4000096b4000098b400009ab400009cb400009eb40000a0b400004eb50000b2ba0000b4ba0000baba0000beba0000c2ba000010bb00002ada0000
+    m_ExpandedIDs: ffffffff000000007eb4000080b4000082b4000084b4000086b400008ab400008cb400008eb4000092b4000094b4000096b4000098b400009ab400009cb400009eb40000a0b4000018b5000048b500004eb50000b2ba0000b4ba0000baba0000c2ba000010bb000018bb00002ada0000a6da0000f0390100
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1206,9 +1205,9 @@ MonoBehaviour:
       m_ResourceFile: 
   m_AssetTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: daab0000
-    m_LastClickedID: 43994
-    m_ExpandedIDs: ffffffff000000007eb4000080b4000082b4000084b4000086b400008ab400008cb400008eb4000092b4000094b4000096b4000098b400009ab400009cb400009eb40000a0b400004eb50000b2ba0000b4ba0000baba0000beba0000c2ba000010bb00002ada0000
+    m_SelectedIDs: 
+    m_LastClickedID: 0
+    m_ExpandedIDs: ffffffff0000000080b4000082b4000084b4000086b400008ab400008cb400008eb4000092b4000094b4000096b4000098b400009ab400009cb400009eb40000a0b40000b2ba0000b4ba0000baba0000c2ba000010bb00002ada0000f0390100
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1234,8 +1233,8 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: daab0000
-    m_LastClickedInstanceID: 43994
+    m_SelectedInstanceIDs: 
+    m_LastClickedInstanceID: 0
     m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: 
     m_RenameOverlay:

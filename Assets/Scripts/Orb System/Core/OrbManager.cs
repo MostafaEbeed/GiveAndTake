@@ -56,6 +56,11 @@ public class OrbManager : MonoBehaviour
             return;
         }
 
+        if (index == m_currentIndex)
+        {
+            return;
+        }
+
         UnequipCurrentOrb();
 
         m_currentIndex = index;
@@ -63,6 +68,7 @@ public class OrbManager : MonoBehaviour
 
         SpawnOrb(data);
     }
+
 
     private void EquipDefaultOrb()
     {
