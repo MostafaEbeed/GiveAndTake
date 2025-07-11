@@ -98,11 +98,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4571711973506529550}
-  - component: {fileID: -2940623270649482783}
+  - component: {fileID: -830531294753524235}
   - component: {fileID: 8361929322571075445}
   - component: {fileID: 2757430369460741559}
   m_Layer: 0
-  m_Name: WeightOrb
+  m_Name: MoveWhenJumpingOrb
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -124,7 +124,7 @@ Transform:
   - {fileID: 8886382832188037559}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
---- !u!114 &-2940623270649482783
+--- !u!114 &-830531294753524235
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -133,10 +133,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 6075522847896849564}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9859cbcf2eab0b44db0ee7044925742e, type: 3}
+  m_Script: {fileID: 11500000, guid: 507b0627070daff4ab5fd19a861f1f94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Data: {fileID: 11400000, guid: 5c95deb9e84fee54eaa4294e565b5c44, type: 2}
+  Data: {fileID: 11400000, guid: d1d8ab2c57aa97145a3eccf42404c57c, type: 2}
 --- !u!114 &8361929322571075445
 MonoBehaviour:
   m_ObjectHideFlags: 0

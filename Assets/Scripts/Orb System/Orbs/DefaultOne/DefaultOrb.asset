@@ -9,17 +9,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc40de8f1dc2813449c99d7636f0fdd5, type: 3}
-  m_Name: WeightOrb
+  m_Script: {fileID: 11500000, guid: 8d9f0258c4869aa488d73fbf4ba0f7b4, type: 3}
+  m_Name: DefaultOrb
   m_EditorClassIdentifier: 
-  orbName: Weight
-  visualPrefab: {fileID: 6075522847896849564, guid: 395a5d40525543747b60b66fe46c8651, type: 3}
+  orbName: DefaultOrb
+  visualPrefab: {fileID: 6075522847896849564, guid: a1fb9b58b9a3d37448aff7435fa35500, type: 3}
   equipSound: {fileID: 8300000, guid: b42528a417f0d864ba39c1234be32aa9, type: 3}
   uiPopupMessage: 
   moveSpeedMultiplier: 1
   jumpHeightMultiplier: 1
   extraGravityMultiplier: 1
-  disableMovement: 1
+  disableMovement: 0
   disableJump: 1
   disableLook: 0
-  slamGravityMultiplier: 5

@@ -1,11 +1,14 @@
 using UnityEngine;
 
-public class WeightOrbBehavior : OrbBehavior
+public class MoveWhenJumpingOrbBehavior : OrbBehavior
 {
+    private float localMoveInput;
+    private float localTurnInput;
+    
     public override void OnEquip()
     {
         base.OnEquip();
-        
+
         m_player.IsMovementLocked = Data.disableMovement;
         m_player.IsJumpLocked = Data.disableJump;
         m_player.IsLookLocked = Data.disableLook;
@@ -23,14 +26,21 @@ public class WeightOrbBehavior : OrbBehavior
 
     public override void OnUpdate()
     {
-        if (!m_player.controller.isGrounded)
-        {
-            m_player.ExtraGravityMultiplier = ((WeightOrbData)Data).slamGravityMultiplier;
-        }
-        
         InputManagement();
         
-        m_player.InputManagement(moveInput, turnInput);
+        if (m_player.controller.isGrounded)
+        {
+            localMoveInput = 0;
+            localTurnInput = 0;
+        }
+        else
+        {
+            localMoveInput = moveInput;
+            localTurnInput = turnInput;
+        }
+        
+        m_player.InputManagement(localMoveInput, localTurnInput);
+
     }
 
     public override void OnUnequip()
@@ -46,5 +56,4 @@ public class WeightOrbBehavior : OrbBehavior
         m_player.JumpHeight = 2f;
         m_player.ExtraGravityMultiplier = 1f;
     }
-
 }

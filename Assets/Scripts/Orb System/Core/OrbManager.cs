@@ -14,15 +14,17 @@ public class OrbManager : MonoBehaviour
     private void Start()
     {
         m_player = GetComponent<PlayerController>();
+        
+        EquipOrb(0);
     }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            EquipOrb(0);
-            //int nextIndex = (m_currentIndex + 1) % m_orbDatas.Count;
-            //EquipOrb(nextIndex);
+            //EquipOrb(0);
+            int nextIndex = (m_currentIndex + 1) % m_orbDatas.Count;
+            EquipOrb(nextIndex);
         }
 
         m_currentBehavior?.OnUpdate();

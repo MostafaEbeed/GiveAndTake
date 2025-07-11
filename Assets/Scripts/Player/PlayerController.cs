@@ -123,7 +123,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        InputManagement();
+        //InputManagement();
 
         if (Input.GetButtonDown("Jump"))
         {
@@ -326,10 +326,10 @@ public class PlayerController : MonoBehaviour
         noise.FrequencyGain = 0f;
     }
 
-    private void InputManagement()
+    public void InputManagement(float moveInput, float turnInput)
     {
-        moveInput = Input.GetAxis("Vertical");
-        turnInput = Input.GetAxis("Horizontal");
+        this.moveInput = moveInput;
+        this.turnInput = turnInput;
         mouseX = Input.GetAxis("Mouse X");
         mouseY = Input.GetAxis("Mouse Y");
     }
