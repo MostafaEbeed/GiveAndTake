@@ -11,6 +11,7 @@ public class WeightOrbBehavior : OrbBehavior
         m_player.currentSpeedMultiplier = Data.moveSpeedMultiplier;
         m_player.JumpHeight = m_player.IsJumpLocked ? 0f : m_player.JumpHeight * Data.jumpHeightMultiplier;
         m_player.ExtraGravityMultiplier = Data.extraGravityMultiplier;
+        m_player.CurrentOrb = this;
 
         if (Data.equipSound)
             AudioSource.PlayClipAtPoint(Data.equipSound, m_player.transform.position);
@@ -28,6 +29,9 @@ public class WeightOrbBehavior : OrbBehavior
 
     public override void OnUnequip()
     {
+        if (m_player.CurrentOrb == this)
+            m_player.CurrentOrb = null;
+
         m_player.IsMovementLocked = false;
         m_player.IsJumpLocked = false;
         m_player.IsLookLocked = false;

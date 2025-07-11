@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private AudioSource footstepSound;
     [SerializeField] private PlayerStates playerStates;
     [SerializeField] private CinemachineBasicMultiChannelPerlin m_impulseSource;
+    public OrbBehavior CurrentOrb { get; set; }
 
     public CharacterController controller {  get; private set; }
     public CinemachineCamera virtualCamera;
@@ -20,6 +21,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float jumpHeight = 2f;
     [SerializeField] private float rotSpeed = 0;
 
+    private Vector3 m_externalForce = Vector3.zero;
+    private float m_externalForceDecay = 10f;
+
+
     [Header("Advanced Jump Settings")]
     [SerializeField] private float coyoteTime = 0.2f;
     [SerializeField] private float jumpBufferTime = 0.2f;
@@ -28,7 +33,6 @@ public class PlayerController : MonoBehaviour
     private float jumpBufferTimer;
 
     private bool isJumping = false;
-
 
     public bool IsMovementLocked { get; set; } = false;
     public bool IsJumpLocked { get; set; } = false;
@@ -153,6 +157,11 @@ public class PlayerController : MonoBehaviour
         Turn();
     }
 
+    public void ApplyExternalForce(Vector3 force)
+    {
+        m_externalForce += force;
+    }
+
     private void GroundMovement()
     {
 
@@ -180,7 +189,11 @@ public class PlayerController : MonoBehaviour
 
         move.y = VerticalForceCalculation();
 
-        controller.Move(move * Time.deltaTime);
+        Vector3 totalMovement = move + m_externalForce;
+        controller.Move(totalMovement * Time.deltaTime);
+
+        m_externalForce = Vector3.Lerp(m_externalForce, Vector3.zero, m_externalForceDecay * Time.deltaTime);
+
     }
 
     private void Turn()
