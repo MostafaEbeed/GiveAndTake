@@ -20,5 +20,5 @@ MonoBehaviour:
   jumpHeightMultiplier: 1
   extraGravityMultiplier: 1
   disableMovement: 0
-  disableJump: 1
+  disableJump: 0
   disableLook: 0

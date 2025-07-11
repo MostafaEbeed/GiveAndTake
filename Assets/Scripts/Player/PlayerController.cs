@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
 
     public CharacterController controller {  get; private set; }
     public CinemachineCamera virtualCamera;
+    private PlatformPlayerController platformController;
 
     [Header("Movement Settings")]
     [SerializeField] private float moveSpeed = 5f;
@@ -116,6 +117,7 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         controller = GetComponent<CharacterController>();
+        platformController = GetComponent<PlatformPlayerController>();
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -168,6 +170,8 @@ public class PlayerController : MonoBehaviour
         Vector3 move = IsMovementLocked ? Vector3.zero : new Vector3(turnInput, 0, moveInput);
         move = virtualCamera.transform.TransformDirection(move);
 
+        
+        
 
         if (!IsMovementLocked && Input.GetKey(KeyCode.LeftShift))
         {
@@ -186,6 +190,13 @@ public class PlayerController : MonoBehaviour
         virtualCamera.Lens.FieldOfView = Mathf.Lerp(virtualCamera.Lens.FieldOfView, targetFOV, sprintTransitSpeed * Time.deltaTime);
 
         move *= currentSpeed;
+        
+        // Add platform velocity to maintain position on moving platforms
+        if (platformController.IsOnPlatform())
+        {
+            Vector3 platformMovement = platformController.GetPlatformVelocity();
+            move += platformMovement;
+        }
 
         move.y = VerticalForceCalculation();
 
