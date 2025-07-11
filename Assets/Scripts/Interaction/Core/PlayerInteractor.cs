@@ -11,8 +11,6 @@ public class PlayerInteractor : MonoBehaviour
     [SerializeField] private AudioSource m_interactionSFXSource;
 
     [Header("UI")]
-    [SerializeField] private GameObject interactionUI;
-    [SerializeField] private TextMeshProUGUI interactionText;
     private RectTransform interactionRect;
     private CanvasGroup interactionCanvasGroup;
 
@@ -21,15 +19,15 @@ public class PlayerInteractor : MonoBehaviour
 
     private void Start()
     {
-        interactionRect = interactionUI.GetComponent<RectTransform>();
-        interactionCanvasGroup = interactionUI.GetComponent<CanvasGroup>();
+        interactionRect = ContextManager.instance.InteractionUI.GetComponent<RectTransform>();
+        interactionCanvasGroup = ContextManager.instance.InteractionUI.GetComponent<CanvasGroup>();
 
         if (interactionCanvasGroup == null)
         {
-            interactionCanvasGroup = interactionUI.AddComponent<CanvasGroup>();
+            interactionCanvasGroup = ContextManager.instance.InteractionUI.AddComponent<CanvasGroup>();
         }
 
-        interactionUI.SetActive(false);
+        ContextManager.instance.InteractionUI.SetActive(false);
     }
 
     private void Update()
@@ -52,7 +50,7 @@ public class PlayerInteractor : MonoBehaviour
             if (interactable != null)
             {
                 currentInteractable = interactable;
-                interactionText.text = interactable.GetInteractionMessage();
+                ContextManager.instance.InteractionText.text = interactable.GetInteractionMessage();
                 if (!uiVisible)
                     ShowInteractionUI();
 
@@ -70,7 +68,7 @@ public class PlayerInteractor : MonoBehaviour
     {
         uiVisible = true;
         m_interactionSFXSource.Play();
-        interactionUI.SetActive(true);
+        ContextManager.instance.InteractionUI.SetActive(true);
         interactionCanvasGroup.alpha = 0f;
         interactionRect.localScale = Vector3.one * 0.8f;
 
@@ -84,7 +82,7 @@ public class PlayerInteractor : MonoBehaviour
         LeanTween.alphaCanvas(interactionCanvasGroup, 0f, 0.2f).setEase(LeanTweenType.easeInExpo);
         LeanTween.scale(interactionRect, Vector3.one * 0.8f, 0.2f).setEase(LeanTweenType.easeInBack).setOnComplete(() =>
         {
-            interactionUI.SetActive(false);
+            ContextManager.instance.InteractionUI.SetActive(false);
             m_interactionSFXSource.Play();
         });
     }

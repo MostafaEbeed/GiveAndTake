@@ -19,6 +19,8 @@ public class OrbManager : MonoBehaviour
     {
         m_player = GetComponent<PlayerController>();
         EquipDefaultOrb();
+
+        orbUIPopup = ContextManager.instance.OrbUIPopUp;
     }
 
     private void Update()
