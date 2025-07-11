@@ -54,4 +54,12 @@ public class OrbUIPopUp : MonoBehaviour
                 .setOnComplete(() => isAnimating = false);
         });
     }
+
+    public void HideInstantly()
+    {
+        LeanTween.cancel(gameObject);
+        canvasGroup.alpha = 0f;
+        rectTransform.anchoredPosition = new Vector2(319.0529f, 90f);
+    }
+
 }

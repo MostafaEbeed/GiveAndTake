@@ -83,8 +83,14 @@ public class OrbManager : MonoBehaviour
             return;
         }
 
+        if (orbUIPopup != null)
+        {
+            orbUIPopup.HideInstantly();
+        }
+
         SpawnOrb(m_defaultOrbBehavior);
     }
+
 
     private void SpawnOrb(OrbData data)
     {
@@ -116,4 +122,23 @@ public class OrbManager : MonoBehaviour
             Debug.LogWarning($"OrbData '{data.name}' has no visual prefab assigned.");
         }
     }
+
+    public void PickUpAndEquip(OrbData newOrb)
+    {
+        if (newOrb == null)
+        {
+            Debug.LogWarning("Tried to pick up a null OrbData.");
+            return;
+        }
+
+        int existingIndex = m_orbDatas.IndexOf(newOrb);
+        if (existingIndex == -1)
+        {
+            m_orbDatas.Add(newOrb);
+            existingIndex = m_orbDatas.Count - 1;
+        }
+
+        EquipOrb(existingIndex);
+    }
+
 }

@@ -1,6 +1,5 @@
 using Unity.Cinemachine;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -21,6 +20,14 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float gravity = 0;
     [SerializeField] private float jumpHeight = 2f;
     [SerializeField] private float rotSpeed = 0;
+
+    [Header("Hand Bob Settings")]
+    [SerializeField] private Transform handTransform;  
+    [SerializeField] private float handBobFrequency = 5f;
+    [SerializeField] private float handBobAmplitude = 0.05f;
+
+    private float handBobTimer = 0f;
+    private Vector3 handStartLocalPos;
 
     private Vector3 m_externalForce = Vector3.zero;
     private float m_externalForceDecay = 10f;
@@ -74,8 +81,7 @@ public class PlayerController : MonoBehaviour
     private float xRotation;
 
     [Header("Camera Bob Settings")]
-    [SerializeField] private float bobFrequency = 1f;
-    [SerializeField] private float bobAmplitude = 1f;
+
     [SerializeField] private float normalFOV = 60f;
     [SerializeField] private float sprintFOV = 70f;
 
@@ -113,16 +119,19 @@ public class PlayerController : MonoBehaviour
         Cursor.visible = false;
     }
 
+    private void Start()
+    {
+        handStartLocalPos = handTransform.localPosition;
+    }
+
     private void Update()
     {
         Movement();
 
         PlayFootstepSound();
-    }
 
-    private void LateUpdate()
-    {
-        CameraBob();
+        HandleHandBob();
+
     }
 
     private void Movement()
@@ -202,20 +211,6 @@ public class PlayerController : MonoBehaviour
         transform.Rotate(Vector3.up * mouseX);
     }
 
-    private void CameraBob()
-    {
-        if (controller.isGrounded && controller.velocity.magnitude > 0.1f)
-        {
-            noiseComponent.ReactionSettings.AmplitudeGain = bobAmplitude;
-            noiseComponent.ReactionSettings.FrequencyGain = bobFrequency;
-        }
-        else
-        {
-            noiseComponent.ReactionSettings.AmplitudeGain = 1f;
-            noiseComponent.ReactionSettings.FrequencyGain = .1f;
-        }
-    }
-
     private void PlayFootstepSound()
     {
         if (controller.isGrounded && controller.velocity.magnitude > 0.1f)
@@ -269,6 +264,30 @@ public class PlayerController : MonoBehaviour
         StopAllCoroutines(); 
         StartCoroutine(DoCameraShake(m_impulseSource, amplitude, frequency, duration));
     }
+
+    private void HandleHandBob()
+    {
+        if (controller.isGrounded && controller.velocity.magnitude > 0.1f && !IsMovementLocked)
+        {
+            handBobTimer += Time.deltaTime * handBobFrequency;
+
+            float bobOffsetY = Mathf.Sin(handBobTimer) * handBobAmplitude;
+            float bobOffsetX = Mathf.Cos(handBobTimer * 0.5f) * handBobAmplitude * 0.5f;
+
+            handTransform.localPosition = handStartLocalPos + new Vector3(bobOffsetX, bobOffsetY, 0f);
+        }
+        else
+        {
+            handTransform.localPosition = Vector3.Lerp(
+                handTransform.localPosition,
+                handStartLocalPos,
+                Time.deltaTime * 5f
+            );
+
+            handBobTimer = 0f;
+        }
+    }
+
 
     private System.Collections.IEnumerator DoCameraShake(CinemachineBasicMultiChannelPerlin noise, float amplitude, float frequency, float duration)
     {

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8886382832188037559}
   - component: {fileID: 6710877034795569269}
   - component: {fileID: 1395671351429642062}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -101,7 +101,7 @@ GameObject:
   - component: {fileID: -4325202348174727470}
   - component: {fileID: 8361929322571075445}
   - component: {fileID: 2757430369460741559}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: MagnetOrb
   m_TagString: Untagged
   m_Icon: {fileID: 0}
