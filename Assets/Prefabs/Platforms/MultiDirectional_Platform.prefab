@@ -63,10 +63,10 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_RenderingLayerMask: 1
+  m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 981abf7a53e6a964fba6bc48555ec31a, type: 2}
+  - {fileID: 2100000, guid: e3b2ebb52e5ac4a4181c619319dd6be8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -122,12 +122,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 2
-  moveDistance: 7.29
+  moveDistance: 9.66
   autoMove: 1
   autoMoveDelay: 1
   playerLayer:
     serializedVersion: 2
     m_Bits: 64
   playerDetectionHeight: 1
-  customDirection: {x: 0, y: 0.58, z: 0.87}
+  showGizmos: 1
+  customDirection: {x: 0, y: 0, z: 1}
   normalizeDirection: 1
