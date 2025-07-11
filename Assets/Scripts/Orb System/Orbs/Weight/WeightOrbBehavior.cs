@@ -2,8 +2,6 @@ using UnityEngine;
 
 public class WeightOrbBehavior : OrbBehavior
 {
-    private bool m_wasGrounded;
-
     public override void OnEquip()
     {
         m_player.IsMovementLocked = Data.disableMovement;
@@ -16,6 +14,8 @@ public class WeightOrbBehavior : OrbBehavior
 
         if (Data.equipSound)
             AudioSource.PlayClipAtPoint(Data.equipSound, m_player.transform.position);
+
+        m_player.ShakeCamera(0.5f,5,0.3f);
     }
 
     public override void OnUpdate()
@@ -24,8 +24,6 @@ public class WeightOrbBehavior : OrbBehavior
         {
             m_player.ExtraGravityMultiplier = ((WeightOrbData)Data).slamGravityMultiplier;
         }
-
-        m_wasGrounded = m_player.controller.isGrounded;
     }
 
     public override void OnUnequip()

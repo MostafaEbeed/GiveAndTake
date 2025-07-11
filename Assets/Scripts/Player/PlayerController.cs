@@ -7,6 +7,8 @@ public class PlayerController : MonoBehaviour
     [Header("References")]
     [SerializeField] private AudioSource footstepSound;
     [SerializeField] private PlayerStates playerStates;
+    [SerializeField] private CinemachineBasicMultiChannelPerlin m_impulseSource;
+
     public CharacterController controller {  get; private set; }
     public CinemachineCamera virtualCamera;
 
@@ -33,6 +35,7 @@ public class PlayerController : MonoBehaviour
     public bool IsLookLocked { get; set; } = false;
 
     public float ExtraGravityMultiplier { get; set; } = 1f;
+    public CinemachineBasicMultiChannelPerlin CameraImpulseSource => m_impulseSource;
 
     public float MoveSpeed
     {
@@ -292,6 +295,23 @@ public class PlayerController : MonoBehaviour
         return verticalVelocity;
     }
 
+
+    public void ShakeCamera(float amplitude, float frequency, float duration)
+    {
+        StopAllCoroutines(); 
+        StartCoroutine(DoCameraShake(m_impulseSource, amplitude, frequency, duration));
+    }
+
+    private System.Collections.IEnumerator DoCameraShake(CinemachineBasicMultiChannelPerlin noise, float amplitude, float frequency, float duration)
+    {
+        noise.AmplitudeGain = amplitude;
+        noise.FrequencyGain = frequency;
+
+        yield return new WaitForSeconds(duration);
+
+        noise.AmplitudeGain = 0f;
+        noise.FrequencyGain = 0f;
+    }
 
     private void InputManagement()
     {
