@@ -154,8 +154,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff6ef635629cfcf4bbb837ccdd86f7d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_hoverAmplitude: 0.1
-  m_hoverFrequency: 4
+  m_hoverMinY: -0.3
+  m_hoverMaxY: 0.1
+  m_hoverFrequency: 2
 --- !u!114 &2757430369460741559
 MonoBehaviour:
   m_ObjectHideFlags: 0

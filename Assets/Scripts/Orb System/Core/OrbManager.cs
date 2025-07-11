@@ -131,14 +131,13 @@ public class OrbManager : MonoBehaviour
             return;
         }
 
-        int existingIndex = m_orbDatas.IndexOf(newOrb);
-        if (existingIndex == -1)
+        if (!m_orbDatas.Contains(newOrb))
         {
             m_orbDatas.Add(newOrb);
-            existingIndex = m_orbDatas.Count - 1;
         }
 
-        EquipOrb(existingIndex);
+        EquipOrb(m_orbDatas.IndexOf(newOrb));
     }
+
 
 }
