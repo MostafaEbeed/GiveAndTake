@@ -223,7 +223,9 @@ public class PlayerController : MonoBehaviour
                 {
                     AudioClip clip = footstepClips[Random.Range(0, footstepClips.Length)];
 
-                    footstepSound.PlayOneShot(clip);
+                    //footstepSound.PlayOneShot(clip);
+                    
+                    AudioManager.Instance.PlaySFX(clip, this.transform.position);
                 }
 
                 nextStepTimer = Time.time + (stepInterval / currentSpeedMultiplier);
