@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8886382832188037559
 Transform:
   m_ObjectHideFlags: 0
@@ -99,7 +99,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4571711973506529550}
   - component: {fileID: 2030795045908681093}
-  - component: {fileID: 8361929322571075445}
   - component: {fileID: 2757430369460741559}
   m_Layer: 0
   m_Name: DefaultOrb
@@ -137,20 +136,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Data: {fileID: 11400000, guid: 32433ebb8b5c66c489f5e4bc83f1acd5, type: 2}
---- !u!114 &8361929322571075445
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6075522847896849564}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff6ef635629cfcf4bbb837ccdd86f7d8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_hoverAmplitude: 0.1
-  m_hoverFrequency: 4
 --- !u!114 &2757430369460741559
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,24 +1,9 @@
-using UnityEngine;
 
 public class DefaultOrbBehavior : OrbBehavior
 {
     public override void OnEquip()
     {
         base.OnEquip();
-
-        m_player.IsMovementLocked = Data.disableMovement;
-        m_player.IsJumpLocked = Data.disableJump;
-        m_player.IsLookLocked = Data.disableLook;
-
-        m_player.currentSpeedMultiplier = Data.moveSpeedMultiplier;
-        m_player.JumpHeight = m_player.IsJumpLocked ? 0f : m_player.JumpHeight * Data.jumpHeightMultiplier;
-        m_player.ExtraGravityMultiplier = Data.extraGravityMultiplier;
-        m_player.CurrentOrb = this;
-
-        if (Data.equipSound)
-            AudioSource.PlayClipAtPoint(Data.equipSound, m_player.transform.position);
-
-        m_player.ShakeCamera(0.5f,5,0.3f);
     }
 
     public override void OnUpdate()

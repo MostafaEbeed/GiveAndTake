@@ -1,46 +1,35 @@
-using UnityEngine;
-
 public class MoveWhenJumpingOrbBehavior : OrbBehavior
 {
-    private float localMoveInput;
-    private float localTurnInput;
-    
-    public override void OnEquip()
-    {
-        base.OnEquip();
+    private bool bouncedThisFrame = false;
 
-        m_player.IsMovementLocked = Data.disableMovement;
-        m_player.IsJumpLocked = Data.disableJump;
-        m_player.IsLookLocked = Data.disableLook;
-
-        m_player.currentSpeedMultiplier = Data.moveSpeedMultiplier;
-        m_player.JumpHeight = m_player.IsJumpLocked ? 0f : m_player.JumpHeight * Data.jumpHeightMultiplier;
-        m_player.ExtraGravityMultiplier = Data.extraGravityMultiplier;
-        m_player.CurrentOrb = this;
-
-        if (Data.equipSound)
-            AudioSource.PlayClipAtPoint(Data.equipSound, m_player.transform.position);
-
-        m_player.ShakeCamera(0.5f,5,0.3f);
-    }
+    private float m_localMoveInput;
+    private float m_localTurnInput;
 
     public override void OnUpdate()
     {
         InputManagement();
-        
-        if (m_player.controller.isGrounded)
-        {
-            localMoveInput = 0;
-            localTurnInput = 0;
-        }
-        else
-        {
-            localMoveInput = moveInput;
-            localTurnInput = turnInput;
-        }
-        
-        m_player.InputManagement(localMoveInput, localTurnInput);
 
+        m_localMoveInput = moveInput;
+        m_localTurnInput = turnInput;
+
+        if (m_player.controller.isGrounded && !bouncedThisFrame)
+        {
+            m_player.ForceBounce(Data.jumpHeightMultiplier);
+            bouncedThisFrame = true;
+        }
+
+        if (!m_player.controller.isGrounded)
+        {
+            bouncedThisFrame = false;
+        }
+
+        m_player.InputManagement(m_localMoveInput, m_localTurnInput);
+
+    }
+
+    public override void OnEquip()
+    {
+        base.OnEquip();
     }
 
     public override void OnUnequip()
@@ -48,12 +37,7 @@ public class MoveWhenJumpingOrbBehavior : OrbBehavior
         if (m_player.CurrentOrb == this)
             m_player.CurrentOrb = null;
 
-        m_player.IsMovementLocked = false;
         m_player.IsJumpLocked = false;
-        m_player.IsLookLocked = false;
-
-        m_player.currentSpeedMultiplier = 1f;
-        m_player.JumpHeight = 2f;
-        m_player.ExtraGravityMultiplier = 1f;
+        m_player.IsMovementLocked = false;
     }
 }

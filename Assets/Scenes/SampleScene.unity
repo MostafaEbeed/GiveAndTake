@@ -237,21 +237,25 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3407129393036957797, guid: ea7e6d3df03b3924f8f100d9712bdc32, type: 3}
+      propertyPath: m_defaultOrbBehavior
+      value: 
+      objectReference: {fileID: 11400000, guid: 32433ebb8b5c66c489f5e4bc83f1acd5, type: 2}
+    - target: {fileID: 3407129393036957797, guid: ea7e6d3df03b3924f8f100d9712bdc32, type: 3}
       propertyPath: m_orbDatas.Array.size
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3407129393036957797, guid: ea7e6d3df03b3924f8f100d9712bdc32, type: 3}
       propertyPath: 'm_orbDatas.Array.data[0]'
       value: 
-      objectReference: {fileID: 11400000, guid: 32433ebb8b5c66c489f5e4bc83f1acd5, type: 2}
+      objectReference: {fileID: 11400000, guid: d1d8ab2c57aa97145a3eccf42404c57c, type: 2}
     - target: {fileID: 3407129393036957797, guid: ea7e6d3df03b3924f8f100d9712bdc32, type: 3}
       propertyPath: 'm_orbDatas.Array.data[1]'
       value: 
-      objectReference: {fileID: 11400000, guid: d1d8ab2c57aa97145a3eccf42404c57c, type: 2}
+      objectReference: {fileID: 11400000, guid: 5c95deb9e84fee54eaa4294e565b5c44, type: 2}
     - target: {fileID: 3407129393036957797, guid: ea7e6d3df03b3924f8f100d9712bdc32, type: 3}
       propertyPath: 'm_orbDatas.Array.data[2]'
       value: 
-      objectReference: {fileID: 11400000, guid: 5c95deb9e84fee54eaa4294e565b5c44, type: 2}
+      objectReference: {fileID: 11400000, guid: 921476306c57b304b80a7254eaa46391, type: 2}
     - target: {fileID: 3407129393036957797, guid: ea7e6d3df03b3924f8f100d9712bdc32, type: 3}
       propertyPath: 'm_orbDatas.Array.data[3]'
       value: 
@@ -2418,6 +2422,6 @@ SceneRoots:
   - {fileID: 1183531568}
   - {fileID: 1814360763}
   - {fileID: 911249453}
+  - {fileID: 1336959023}
   - {fileID: 207232847}
   - {fileID: 5803455141386109867}
-  - {fileID: 1336959023}

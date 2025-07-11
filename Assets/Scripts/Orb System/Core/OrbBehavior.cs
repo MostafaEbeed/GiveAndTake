@@ -7,8 +7,6 @@ public abstract class OrbBehavior : MonoBehaviour
 
     protected float moveInput;
     protected float turnInput;
-    protected float mouseX;
-    protected float mouseY;
     
     public void Initialize(PlayerController player, OrbData data)
     {
@@ -18,7 +16,17 @@ public abstract class OrbBehavior : MonoBehaviour
 
     public virtual void OnEquip()
     {
-        Debug.Log($"Entering {GetType().Name}");
+        m_player.IsJumpLocked = Data.disableJump;
+        m_player.IsMovementLocked = Data.disableMovement;
+        m_player.IsLookLocked = Data.disableLook;
+        m_player.CurrentOrb = this;
+
+        m_player.currentSpeedMultiplier = Data.moveSpeedMultiplier;
+        m_player.JumpHeight = m_player.IsJumpLocked ? 0f : m_player.JumpHeight * Data.jumpHeightMultiplier;
+        m_player.ExtraGravityMultiplier = Data.extraGravityMultiplier;
+
+        if (Data.equipSound)
+            AudioSource.PlayClipAtPoint(Data.equipSound, m_player.transform.position);
     }
     public virtual void OnUpdate() { }
     public virtual void OnUnequip() { }
@@ -27,7 +35,5 @@ public abstract class OrbBehavior : MonoBehaviour
     {
         moveInput = Input.GetAxis("Vertical");
         turnInput = Input.GetAxis("Horizontal");
-        mouseX = Input.GetAxis("Mouse X");
-        mouseY = Input.GetAxis("Mouse Y");
     }
 }

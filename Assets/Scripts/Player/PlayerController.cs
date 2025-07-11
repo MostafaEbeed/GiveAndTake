@@ -25,16 +25,6 @@ public class PlayerController : MonoBehaviour
     private Vector3 m_externalForce = Vector3.zero;
     private float m_externalForceDecay = 10f;
 
-
-    [Header("Advanced Jump Settings")]
-    [SerializeField] private float coyoteTime = 0.2f;
-    [SerializeField] private float jumpBufferTime = 0.2f;
-
-    private float coyoteTimer;
-    private float jumpBufferTimer;
-
-    private bool isJumping = false;
-
     public bool IsMovementLocked { get; set; } = false;
     public bool IsJumpLocked { get; set; } = false;
     public bool IsLookLocked { get; set; } = false;
@@ -125,27 +115,9 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        //InputManagement();
-
-        if (Input.GetButtonDown("Jump"))
-        {
-            jumpBufferTimer = jumpBufferTime;
-        }
-        else
-        {
-            jumpBufferTimer -= Time.deltaTime;
-        }
-
         Movement();
 
         PlayFootstepSound();
-
-        if(Input.GetKeyDown(KeyCode.Escape))
-        {
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
-            SceneManager.LoadScene(0);
-        }
     }
 
     private void LateUpdate()
@@ -166,12 +138,8 @@ public class PlayerController : MonoBehaviour
 
     private void GroundMovement()
     {
-
         Vector3 move = IsMovementLocked ? Vector3.zero : new Vector3(turnInput, 0, moveInput);
         move = virtualCamera.transform.TransformDirection(move);
-
-        
-        
 
         if (!IsMovementLocked && Input.GetKey(KeyCode.LeftShift))
         {
@@ -184,27 +152,34 @@ public class PlayerController : MonoBehaviour
             targetFOV = normalFOV;
         }
 
-
         currentSpeed = Mathf.Lerp(currentSpeed, moveSpeed * currentSpeedMultiplier, sprintTransitSpeed * Time.deltaTime);
 
         virtualCamera.Lens.FieldOfView = Mathf.Lerp(virtualCamera.Lens.FieldOfView, targetFOV, sprintTransitSpeed * Time.deltaTime);
 
         move *= currentSpeed;
         
-        // Add platform velocity to maintain position on moving platforms
         if (platformController.IsOnPlatform())
         {
             Vector3 platformMovement = platformController.GetPlatformVelocity();
             move += platformMovement;
         }
 
-        move.y = VerticalForceCalculation();
-
         Vector3 totalMovement = move + m_externalForce;
-        controller.Move(totalMovement * Time.deltaTime);
+
+        totalMovement.y = verticalVelocity;
+
+        if (!controller.isGrounded)
+        {
+            verticalVelocity -= gravity * ExtraGravityMultiplier * Time.deltaTime;
+        }
+        else if (verticalVelocity < 0f)
+        {
+            verticalVelocity = -1f;
+        }
 
         m_externalForce = Vector3.Lerp(m_externalForce, Vector3.zero, m_externalForceDecay * Time.deltaTime);
 
+        controller.Move(totalMovement * Time.deltaTime);
     }
 
     private void Turn()
@@ -284,41 +259,10 @@ public class PlayerController : MonoBehaviour
         return groundFootsteps;
     }
 
-    private float VerticalForceCalculation()
+    public void ForceBounce(float jumpMultiplier = 1f)
     {
-        if (controller.isGrounded)
-        {
-            coyoteTimer = coyoteTime;
-            isJumping = false;
-
-            if (!IsJumpLocked && jumpBufferTimer > 0f)
-            {
-                verticalVelocity = Mathf.Sqrt(jumpHeight * gravity * 2);
-                jumpBufferTimer = 0f;
-                isJumping = true;
-            }
-            else
-            {
-                verticalVelocity = -1f;
-            }
-        }
-        else
-        {
-            coyoteTimer -= Time.deltaTime;
-
-            if (!IsJumpLocked && jumpBufferTimer > 0f && coyoteTimer > 0f && !isJumping)
-            {
-                verticalVelocity = Mathf.Sqrt(jumpHeight * gravity * 2);
-                jumpBufferTimer = 0f;
-                isJumping = true;
-            }
-
-            verticalVelocity -= gravity * ExtraGravityMultiplier * Time.deltaTime;
-        }
-
-        return verticalVelocity;
+        verticalVelocity = Mathf.Sqrt(jumpHeight * gravity * 2f * jumpMultiplier);
     }
-
 
     public void ShakeCamera(float amplitude, float frequency, float duration)
     {
@@ -341,6 +285,7 @@ public class PlayerController : MonoBehaviour
     {
         this.moveInput = moveInput;
         this.turnInput = turnInput;
+
         mouseX = Input.GetAxis("Mouse X");
         mouseY = Input.GetAxis("Mouse Y");
     }

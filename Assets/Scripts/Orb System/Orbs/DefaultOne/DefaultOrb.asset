@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   orbName: DefaultOrb
   visualPrefab: {fileID: 6075522847896849564, guid: a1fb9b58b9a3d37448aff7435fa35500, type: 3}
-  equipSound: {fileID: 8300000, guid: b42528a417f0d864ba39c1234be32aa9, type: 3}
+  equipSound: {fileID: 0}
   uiPopupMessage: 
   moveSpeedMultiplier: 1
   jumpHeightMultiplier: 1

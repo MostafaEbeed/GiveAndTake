@@ -21,5 +21,5 @@ MonoBehaviour:
   extraGravityMultiplier: 1
   disableMovement: 1
   disableJump: 1
-  disableLook: 0
+  disableLook: 1
   slamGravityMultiplier: 5

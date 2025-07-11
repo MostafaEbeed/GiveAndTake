@@ -3,44 +3,82 @@ using UnityEngine;
 
 public class OrbManager : MonoBehaviour
 {
+    [SerializeField] private OrbData m_defaultOrbBehavior;
     [SerializeField] private List<OrbData> m_orbDatas;
     [SerializeField] private Transform m_orbSlot;
 
     private GameObject m_currentVisual;
     private OrbBehavior m_currentBehavior;
-    private int m_currentIndex = 0;
+    private int m_currentIndex = -1;
     private PlayerController m_player;
 
     private void Start()
     {
         m_player = GetComponent<PlayerController>();
-        
-        EquipOrb(0);
+        EquipDefaultOrb();
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            //EquipOrb(0);
-            int nextIndex = (m_currentIndex + 1) % m_orbDatas.Count;
-            EquipOrb(nextIndex);
-        }
+        if (Input.GetKeyDown(KeyCode.Alpha1)) EquipOrb(0);
+        if (Input.GetKeyDown(KeyCode.Alpha2)) EquipOrb(1);
+        if (Input.GetKeyDown(KeyCode.Alpha3)) EquipOrb(2);
+        if (Input.GetKeyDown(KeyCode.Alpha4)) EquipOrb(3);
+
+        if (Input.GetKeyDown(KeyCode.X)) EquipDefaultOrb();
 
         m_currentBehavior?.OnUpdate();
     }
 
-    private void EquipOrb(int index)
+    private void UnequipCurrentOrb()
     {
         if (m_currentBehavior != null)
+        {
             m_currentBehavior.OnUnequip();
+            m_currentBehavior = null;
+        }
 
         if (m_currentVisual)
+        {
             m_currentVisual.GetComponent<OrbPopUp>()?.DestroyWithShrink();
+            Destroy(m_currentVisual);
+            m_currentVisual = null;
+        }
+
+        m_currentIndex = -1;
+    }
+
+    private void EquipOrb(int index)
+    {
+        if (index < 0 || index >= m_orbDatas.Count)
+        {
+            Debug.LogWarning("Tried to equip orb with invalid index: " + index);
+            return;
+        }
+
+        UnequipCurrentOrb();
 
         m_currentIndex = index;
         OrbData data = m_orbDatas[m_currentIndex];
 
+        SpawnOrb(data);
+    }
+
+    private void EquipDefaultOrb()
+    {
+        UnequipCurrentOrb();
+
+        if (m_defaultOrbBehavior == null)
+        {
+            Debug.LogWarning("No default orb assigned.");
+            return;
+        }
+
+        SpawnOrb(m_defaultOrbBehavior);
+    }
+
+    private void SpawnOrb(OrbData data)
+    {
         if (data.visualPrefab)
         {
             m_currentVisual = Instantiate(data.visualPrefab, m_orbSlot);
