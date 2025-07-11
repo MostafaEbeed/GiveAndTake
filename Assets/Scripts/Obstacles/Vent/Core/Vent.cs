@@ -3,12 +3,19 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
+public enum VentDirection
+{
+    Vert,
+    Hor
+}
+
 public class Vent : MonoBehaviour
 {
     [Header("Mode Settings")]
     public VentMode mode = VentMode.Timed;
 
     [Header("Air Stream Settings")]
+    public VentDirection direction = VentDirection.Hor;
     public Transform airOrigin;
     public float airForce = 10f;
     public float airDuration = 5f;
@@ -153,7 +160,14 @@ public class Vent : MonoBehaviour
                 m_windForceProgress[player] = Mathf.Clamp01(m_windForceProgress[player] + Time.deltaTime * m_forceBuildUpSpeed);
                 float effectiveForce = airForce * m_windForceProgress[player];
 
-                player.ApplyExternalForce(airOrigin.forward * effectiveForce);
+                if (direction == VentDirection.Hor)
+                {
+                    player.ApplyExternalForce(airOrigin.forward * effectiveForce);
+                }
+                else
+                {
+                    player.ForceBounce(effectiveForce);
+                }
             }
         }
 
