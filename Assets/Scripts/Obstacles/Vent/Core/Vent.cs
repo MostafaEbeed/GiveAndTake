@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Security.Cryptography.X509Certificates;
 using TMPro;
 using UnityEngine;
 
@@ -93,13 +92,26 @@ public class Vent : MonoBehaviour
 
     private IEnumerator StreamAirForever()
     {
+        m_airIconUI.SetActive(true);
+        m_timerUI.gameObject.SetActive(false);
+
+        yield return StartCoroutine(OpenFlaps());
+
+        if (windVFXPrefab != null && airOrigin != null)
+        {
+            currentVFXInstance = Instantiate(windVFXPrefab, airOrigin);
+            currentVFXInstance.transform.localPosition = Vector3.zero;
+            currentVFXInstance.transform.localRotation = Quaternion.identity;
+            currentVFXInstance.transform.localScale = Vector3.one * 0.1f;
+        }
+
         while (true)
         {
-            OpenFlaps();
             ApplyAirForce();
             yield return null;
         }
     }
+
 
     private IEnumerator StreamAir(float duration)
     {
