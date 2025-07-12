@@ -208,7 +208,8 @@ public class PlayerController : MonoBehaviour
 
         m_externalForce = Vector3.Lerp(m_externalForce, Vector3.zero, m_externalForceDecay * Time.deltaTime);
 
-        controller.Move(totalMovement * Time.deltaTime);
+        if(controller.enabled)
+            controller.Move(totalMovement * Time.deltaTime);
     }
 
     private void Turn()

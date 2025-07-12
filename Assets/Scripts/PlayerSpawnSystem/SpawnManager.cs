@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SpawnManager : MonoBehaviour
 {
@@ -38,10 +39,10 @@ public class SpawnManager : MonoBehaviour
     
     public void PlayerDied()
     {
-        StartCoroutine(RespawnPlayer());
+        StartCoroutine(ReloadLevel());
     }
     
-    private IEnumerator RespawnPlayer()
+    private IEnumerator ReloadLevel()
     {
         // Wait for the specified delay
         yield return new WaitForSeconds(respawnDelay);
@@ -53,7 +54,13 @@ public class SpawnManager : MonoBehaviour
         }
         
         // Spawn a new player
-        SpawnPlayer();
+        ReLoadScene();
+    }
+
+    private void ReLoadScene()
+    {
+        int currentIndex = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(currentIndex);
     }
     
     private void SpawnPlayer()
