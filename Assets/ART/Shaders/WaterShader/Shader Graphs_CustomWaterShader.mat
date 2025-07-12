@@ -67,7 +67,7 @@ Material:
     - _FoamColor: {r: 1.5372549, g: 1.5372549, b: 1.5372549, a: 0.6392157}
     - _FoamTiling: {r: 10, g: 10, b: 0, a: 0}
     - _SurfaceColor: {r: 0.14404595, g: 0.75693107, b: 0.7830189, a: 0.2}
-    - _WaterTextureTiling: {r: 3, g: 1, b: 0, a: 0}
+    - _WaterTextureTiling: {r: 3, g: 3, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &2794778987212690703
