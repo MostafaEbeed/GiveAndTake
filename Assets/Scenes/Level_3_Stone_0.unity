@@ -541,6 +541,10 @@ PrefabInstance:
       propertyPath: boxSize.z
       value: 8.38
       objectReference: {fileID: 0}
+    - target: {fileID: 4769134594144901446, guid: fd1f59d3a32bc4141b2274eae77f9251, type: 3}
+      propertyPath: airDuration
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 6261122240114995366, guid: fd1f59d3a32bc4141b2274eae77f9251, type: 3}
       propertyPath: m_Name
       value: AIRVENT (6)
@@ -8050,7 +8054,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4519066527741873241, guid: 2b1a5d0db77da7a439589beb2c387520, type: 3}
       propertyPath: moveSpeed
-      value: 5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4519066527741873241, guid: 2b1a5d0db77da7a439589beb2c387520, type: 3}
       propertyPath: moveDistance
@@ -9215,6 +9219,10 @@ PrefabInstance:
       propertyPath: OnDoorOpen.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1493342326}
+    - target: {fileID: 3784167401568722401, guid: 50ebfe5d2e602ce44868b74ed0accdcb, type: 3}
+      propertyPath: OnDoorOpen.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4689666907735585657, guid: 50ebfe5d2e602ce44868b74ed0accdcb, type: 3}
       propertyPath: m_LocalPosition.x
       value: -14.483
