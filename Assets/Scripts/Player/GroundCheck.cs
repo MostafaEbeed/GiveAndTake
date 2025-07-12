@@ -48,8 +48,15 @@ public class GroundCheck : MonoBehaviour
 
         if (Physics.Raycast(transform.position, Vector3.down, out hit, groundDistance, glassGroundMask))
         {
-            if(hit.collider.gameObject != null)
-                Destroy(hit.collider.gameObject);
+            if (hit.collider.gameObject != null)
+            {
+                GlassFloor glassFloor = hit.collider.gameObject.GetComponent<GlassFloor>();
+                
+                if(glassFloor != null)
+                    glassFloor.StartClassFractureAnim();
+                
+                //Destroy(hit.collider.gameObject);
+            }
         }
     }
 }
