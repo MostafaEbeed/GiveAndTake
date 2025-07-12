@@ -35,6 +35,11 @@ public class OrbManager : MonoBehaviour
         m_currentBehavior?.OnUpdate();
     }
 
+    public void SetOrbs(List<OrbData> orbDatas)
+    {
+        m_orbDatas = orbDatas;
+    }
+    
     private void UnequipCurrentOrb()
     {
         if (m_currentBehavior != null)

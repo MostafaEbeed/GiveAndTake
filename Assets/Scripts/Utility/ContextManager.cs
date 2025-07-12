@@ -10,6 +10,7 @@ public class ContextManager : MonoBehaviour
     [SerializeField] private OrbUIPopUp orbPopUI;
     [SerializeField] private GameObject interactionUI;
     [SerializeField] private TextMeshProUGUI interactionText;
+    [SerializeField] private OrbManager orbManager;
     private Image m_currentSectorBlocker = null;
     private SectorTitleManager m_sectorTitleManager;
 
@@ -17,6 +18,7 @@ public class ContextManager : MonoBehaviour
     public OrbUIPopUp OrbUIPopUp => orbPopUI;
     public GameObject InteractionUI => interactionUI;
     public TextMeshProUGUI InteractionText => interactionText;
+    public OrbManager OrbManager { get => orbManager; set => orbManager = value; }
     
     private void Awake()
     {
@@ -27,8 +29,6 @@ public class ContextManager : MonoBehaviour
             if (instance != this)
                 Destroy(gameObject);
         }
-        
-        DontDestroyOnLoad(gameObject);
     }
 
 

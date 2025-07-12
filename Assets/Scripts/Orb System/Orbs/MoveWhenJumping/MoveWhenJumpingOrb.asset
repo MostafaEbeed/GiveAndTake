@@ -18,7 +18,7 @@ MonoBehaviour:
   uiTakeMessage: "You feel light \u2014 spring-loaded and ready to soar!"
   uiGiveMessage: "Your feet can\u2019t stay still\u2026 stability lost!"
   moveSpeedMultiplier: 10
-  jumpHeightMultiplier: 2
+  jumpHeightMultiplier: 3.5
   extraGravityMultiplier: 2
   disableMovement: 0
   disableJump: 0

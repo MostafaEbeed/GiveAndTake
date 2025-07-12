@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4494725932329083055
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 630421033396892399}
+  - component: {fileID: 5123099614131885280}
+  m_Layer: 0
+  m_Name: TutorialManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &630421033396892399
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4494725932329083055}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5123099614131885280
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4494725932329083055}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 323e8c3fa229a6649b293ff421f54d7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tipPanel: {fileID: 0}
+  tipText: {fileID: 0}
+  tipDuration: 1
+  tipAnimDuration: 0.5
+  tipEaseIn: 27
+  tipEaseOut: 26
+  tipHiddenPosition: {x: 0, y: -100}
+  tipShownPosition: {x: 0, y: 130}
+  fullScreenPanel: {fileID: 0}
+  fullScreenCanvasGroup: {fileID: 0}
+  fullScreenText: {fileID: 0}
+  m_fullScreenTextTitle: {fileID: 0}
+  fullScreenVideo: {fileID: 0}
+  countdownFillImage: {fileID: 0}
+  fullScreenAnimDuration: 0.7
+  fullScreenEaseIn: 18
+  fullScreenEaseOut: 17
+  fullScreenContentTransform: {fileID: 0}
+  m_interactionPrompt: {fileID: 0}

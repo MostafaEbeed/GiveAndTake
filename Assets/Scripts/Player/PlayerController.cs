@@ -98,6 +98,15 @@ public class PlayerController : MonoBehaviour
 
     private float nextStepTimer = 0;
 
+    [Header("Advanced Jump Settings")]
+    [SerializeField] private float coyoteTime = 0.2f;
+    [SerializeField] private float jumpBufferTime = 0.2f;
+
+    private float coyoteTimer;
+    private float jumpBufferTimer;
+
+    private bool isJumping = false;
+    
     [Header("SFX")]
     [SerializeField] private AudioClip[] groundFootsteps;
     [SerializeField] private AudioClip[] grassFootsteps;
@@ -126,6 +135,15 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetButtonDown("Jump"))
+        {
+            jumpBufferTimer = jumpBufferTime;
+        }
+        else
+        {
+            jumpBufferTimer -= Time.deltaTime;
+        }
+        
         Movement();
 
         PlayFootstepSound();
@@ -166,6 +184,8 @@ public class PlayerController : MonoBehaviour
         virtualCamera.Lens.FieldOfView = Mathf.Lerp(virtualCamera.Lens.FieldOfView, targetFOV, sprintTransitSpeed * Time.deltaTime);
 
         move *= currentSpeed;
+        
+        move.y = VerticalForceCalculation();
         
         if (platformController.IsOnPlatform())
         {
@@ -258,6 +278,7 @@ public class PlayerController : MonoBehaviour
 
     public void ForceBounce(float jumpMultiplier = 1f)
     {
+        jumpBufferTimer = jumpBufferTime;
         verticalVelocity = Mathf.Sqrt(jumpHeight * gravity * 2f * jumpMultiplier);
     }
 
@@ -265,6 +286,41 @@ public class PlayerController : MonoBehaviour
     {
         StopAllCoroutines(); 
         StartCoroutine(DoCameraShake(m_impulseSource, amplitude, frequency, duration));
+    }
+    
+    private float VerticalForceCalculation()
+    {
+        if (controller.isGrounded)
+        {
+            coyoteTimer = coyoteTime;
+            isJumping = false;
+
+            if (!IsJumpLocked && jumpBufferTimer > 0f)
+            {
+                verticalVelocity = Mathf.Sqrt(jumpHeight * gravity * 2);
+                jumpBufferTimer = 0f;
+                isJumping = true;
+            }
+            else
+            {
+                verticalVelocity = -1f;
+            }
+        }
+        else
+        {
+            coyoteTimer -= Time.deltaTime;
+
+            if (!IsJumpLocked && jumpBufferTimer > 0f && coyoteTimer > 0f && !isJumping)
+            {
+                verticalVelocity = Mathf.Sqrt(jumpHeight * gravity * 2);
+                jumpBufferTimer = 0f;
+                isJumping = true;
+            }
+
+            verticalVelocity -= gravity * ExtraGravityMultiplier * Time.deltaTime;
+        }
+
+        return verticalVelocity;
     }
 
     private void HandleHandBob()

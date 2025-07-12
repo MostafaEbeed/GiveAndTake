@@ -10,7 +10,11 @@ public class OrbPickupInteractable : InteractableBase
 
     public override void Interact(PlayerController interactor)
     {
-        m_orbManager.PickUpAndEquip(m_orbToPickUp);
+        if (ContextManager.instance.OrbManager == null)
+        {
+            ContextManager.instance.OrbManager = FindObjectOfType<OrbManager>();
+        }
+        ContextManager.instance.OrbManager.PickUpAndEquip(m_orbToPickUp);
         TutorialManager.Instance.ShowFullScreen(m_pickedOrbtutorialTextMesh, m_orbToPickUp.orbName, m_orbTutorialClip);
         LeanTween.scale(gameObject , Vector3.zero , 0.5f).setOnComplete( () => { Destroy(gameObject); });
     }
