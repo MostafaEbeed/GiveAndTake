@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 610dc64ce8204e0dae51e255b1158949, type: 3}
   m_Name: MoveWhenJumpingOrb
   m_EditorClassIdentifier: 
-  orbName: MoveWhenJumping
+  orbName: Bounce Orb
   visualPrefab: {fileID: 6075522847896849564, guid: 3603774a1b07d8848a053612a280004d, type: 3}
   equipSound: {fileID: 8300000, guid: b42528a417f0d864ba39c1234be32aa9, type: 3}
   uiTakeMessage: "You feel light \u2014 spring-loaded and ready to soar!"
