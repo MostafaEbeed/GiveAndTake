@@ -9,6 +9,8 @@ public class MagentOrbBehavior : OrbBehavior
         base.OnEquip();
 
         playerGroundCheck = m_player.GetComponent<GroundCheck>();
+
+        ContextManager.instance.EnableMetalObjectInteractablility(true);
         
         if (playerGroundCheck.IsMetalGrounded())
         {
@@ -53,5 +55,12 @@ public class MagentOrbBehavior : OrbBehavior
         }
         
         m_player.InputManagement(moveInput, turnInput);
+    }
+
+    public override void OnUnequip()
+    {
+        base.OnUnequip();
+        
+        ContextManager.instance.EnableMetalObjectInteractablility(false);
     }
 }

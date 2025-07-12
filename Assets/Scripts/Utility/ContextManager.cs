@@ -19,6 +19,8 @@ public class ContextManager : MonoBehaviour
     public GameObject InteractionUI => interactionUI;
     public TextMeshProUGUI InteractionText => interactionText;
     public OrbManager OrbManager { get => orbManager; set => orbManager = value; }
+
+    public Action<bool> OnMetalObjectsEnabledForInteraction;
     
     private void Awake()
     {
@@ -53,4 +55,8 @@ public class ContextManager : MonoBehaviour
 
     public void SetCurrentSectorTitleManager(SectorTitleManager manager) => m_sectorTitleManager = manager;
 
+    public void EnableMetalObjectInteractablility(bool b)
+    {
+        OnMetalObjectsEnabledForInteraction?.Invoke(b);
+    }
 }
