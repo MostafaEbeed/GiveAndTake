@@ -12,15 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc40de8f1dc2813449c99d7636f0fdd5, type: 3}
   m_Name: WeightOrb
   m_EditorClassIdentifier: 
-  orbName: Weight
+  orbName: Stone Orb
   visualPrefab: {fileID: 6075522847896849564, guid: 395a5d40525543747b60b66fe46c8651, type: 3}
   equipSound: {fileID: 8300000, guid: b42528a417f0d864ba39c1234be32aa9, type: 3}
   uiTakeMessage: "You harden into unshakable stone \u2014 nothing can move you."
   uiGiveMessage: "Your body locks up\u2026 motion and sight are sealed."
+  orbAcquireTip: 
   moveSpeedMultiplier: 1
   jumpHeightMultiplier: 1
   extraGravityMultiplier: 1
   disableMovement: 1
   disableJump: 1
-  disableLook: 0
+  disableLook: 1
   slamGravityMultiplier: 5

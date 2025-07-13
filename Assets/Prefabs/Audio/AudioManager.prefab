@@ -51,7 +51,7 @@ MonoBehaviour:
   sfxNoEffectMixerGroup: {fileID: 762023560626007793, guid: 10150f6ce1f735344a7c6372da724288, type: 2}
   musicSource: {fileID: 3710876194598952675}
   gameplayMusic: {fileID: 8300000, guid: 80bf0d028fe674d4eba4b8347191d80e, type: 3}
-  mainMenuMusic: {fileID: 8300000, guid: ba1284ee0111f8d448aca1af5d199ec3, type: 3}
+  mainMenuMusic: {fileID: 8300000, guid: 6e69f89e9cb72e54f8800f1f9bd0b4b0, type: 3}
   gameOverMusic: {fileID: 8300000, guid: 80bf0d028fe674d4eba4b8347191d80e, type: 3}
   sfxPrefab: {fileID: 4106771212154636883, guid: c4956ddbb16c5ef489e8fa927de36264, type: 3}
 --- !u!1 &8450457751280657588

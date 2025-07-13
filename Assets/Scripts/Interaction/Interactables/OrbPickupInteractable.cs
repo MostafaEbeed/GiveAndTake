@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Video;
 
@@ -23,6 +22,9 @@ public class OrbPickupInteractable : InteractableBase
 
     private void ShowAcquiredOrbTip()
     {
-        TutorialManager.Instance.ShowTip(m_orbToPickUp.orbAcquireTip);
+        if (!m_orbToPickUp.orbAcquireTip.Equals(string.Empty))
+        {
+            TutorialManager.Instance.ShowTip(m_orbToPickUp.orbAcquireTip);
+        }
     }
 }
