@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Video;
 
@@ -12,10 +13,16 @@ public class OrbPickupInteractable : InteractableBase
     {
         if (ContextManager.instance.OrbManager == null)
         {
-            ContextManager.instance.OrbManager = FindObjectOfType<OrbManager>();
+            ContextManager.instance.OrbManager = FindAnyObjectByType<OrbManager>();
         }
+
         ContextManager.instance.OrbManager.PickUpAndEquip(m_orbToPickUp);
-        TutorialManager.Instance.ShowFullScreen(m_pickedOrbtutorialTextMesh, m_orbToPickUp.orbName, m_orbTutorialClip);
+        TutorialManager.Instance.ShowFullScreen(m_pickedOrbtutorialTextMesh, m_orbToPickUp.orbName, m_orbTutorialClip ,20,ShowAcquiredOrbTip);
         LeanTween.scale(gameObject , Vector3.zero , 0.5f).setOnComplete( () => { Destroy(gameObject); });
+    }
+
+    private void ShowAcquiredOrbTip()
+    {
+        TutorialManager.Instance.ShowTip(m_orbToPickUp.orbAcquireTip);
     }
 }

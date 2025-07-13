@@ -14,9 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   orbName: Bounce Orb
   visualPrefab: {fileID: 6075522847896849564, guid: 3603774a1b07d8848a053612a280004d, type: 3}
-  equipSound: {fileID: 8300000, guid: b42528a417f0d864ba39c1234be32aa9, type: 3}
+  equipSound: {fileID: 8300000, guid: ae9ead6e6b6bc8d44b9dbf7d34c42935, type: 3}
   uiTakeMessage: "You feel light \u2014 spring-loaded and ready to soar!"
   uiGiveMessage: "Your feet can\u2019t stay still\u2026 stability lost!"
+  orbAcquireTip: Press <color=#00FFF6>SPACE</color> to bounce
   moveSpeedMultiplier: 10
   jumpHeightMultiplier: 3.5
   extraGravityMultiplier: 2

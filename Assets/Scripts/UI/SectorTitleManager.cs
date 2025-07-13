@@ -125,9 +125,9 @@ public class SectorTitleManager : MonoBehaviour
                 })
                 .setEase(LeanTweenType.linear).setOnComplete(() =>
                 {
-                    if (SceneManager.GetActiveScene().name.Equals("Tutorial_1"))
+                    if (SceneManager.GetActiveScene().name.Equals("Level_1"))
                     {
-                        TutorialManager.Instance.ShowTip("Press <color=#00FFF6>WASD</color> to move");
+                        TutorialManager.Instance.ShowTip("Press <color=#00FFF6>WASD</color> to move and <color=#00FFF6>E</color> to interact");
                     }
                 });
         }

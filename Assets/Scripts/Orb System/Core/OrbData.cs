@@ -8,6 +8,7 @@ public class OrbData : ScriptableObject
 
     public string uiTakeMessage;
     public string uiGiveMessage;
+    public string orbAcquireTip;
 
     public float moveSpeedMultiplier = 1f;
     public float jumpHeightMultiplier = 1f;

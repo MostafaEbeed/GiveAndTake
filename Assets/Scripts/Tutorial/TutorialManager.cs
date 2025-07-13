@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -16,6 +17,7 @@ public class TutorialManager : MonoBehaviour
     [SerializeField] private LeanTweenType tipEaseOut = LeanTweenType.easeInBack;
     [SerializeField] private Vector2 tipHiddenPosition = new Vector2(0, -100);
     [SerializeField] private Vector2 tipShownPosition = new Vector2(0, 50);
+    [SerializeField] private AudioClip m_tipopUpSFX;
 
     [Header("FullScreen Popup (large)")]
     [SerializeField] private GameObject fullScreenPanel;
@@ -76,6 +78,7 @@ public class TutorialManager : MonoBehaviour
 
         tipText.text = message;
         tipPanel.SetActive(true);
+        AudioManager.Instance.PlaySFX(m_tipopUpSFX , transform.position);
 
         LeanTween.cancel(tipPanel);
 
@@ -108,10 +111,11 @@ public class TutorialManager : MonoBehaviour
             .setOnComplete(() => {
                 tipPanel.SetActive(false);
                 m_isTipActive = false;
+                AudioManager.Instance.PlaySFX(m_tipopUpSFX);
             });
     }
 
-    public void ShowFullScreen(string message, string title, VideoClip video = null, float autoCloseTime = 20f)
+    public void ShowFullScreen(string message, string title, VideoClip video = null, float autoCloseTime = 20f, Action onComplete = null)
     {
         if (m_isFullScreenActive) return;
         m_isFullScreenActive = true;
@@ -172,10 +176,11 @@ public class TutorialManager : MonoBehaviour
         {
             StopCoroutine(m_autoCloseRoutine);
         }
-        m_autoCloseRoutine = StartCoroutine(AutoCloseTutorial(autoCloseTime));
+        m_autoCloseRoutine = StartCoroutine(AutoCloseTutorial(autoCloseTime, onComplete));
+
     }
 
-    private IEnumerator AutoCloseTutorial(float duration)
+    private IEnumerator AutoCloseTutorial(float duration, Action onComplete = null)
     {
         float timePassed = 0f;
 
@@ -192,7 +197,9 @@ public class TutorialManager : MonoBehaviour
         }
 
         HideFullScreen();
+        onComplete?.Invoke();
     }
+
 
     public void HideFullScreen()
     {
